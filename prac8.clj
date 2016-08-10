@@ -15,3 +15,9 @@
 
 ; range 0 ~ 与えた数
 (filter (fn [x] (< x 50)) (range 100)) ; -> (0 1 2 3... 49)
+
+
+(filter (fn [x] (= (count x) 1)) '("a" "aa" "b" "hoge")) ; -> ("a" "b")
+
+; fn [x]の部分を# 引数の部分を%に置き換えることができる
+(filter #(= (count %) 1) '("a" "aa" "b" "hoge")) ; -> ("a" "b")
