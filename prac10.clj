@@ -14,3 +14,7 @@
 
 
 (take 5 (iterate inc 0)) ; -> (0 1 2 3 4)
+
+
+; 2乗していく
+(take 5 (iterate (fn [x] (* x 2)) 1)) ; -> (1 2 4 8 16)
