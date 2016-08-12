@@ -13,4 +13,13 @@
                          (= (mod x 3) 0) (println "Fizz")
                          :else (println x)))
 
+; forを使用したFizzBuzz
 (for [x (range 1 21)] (fizzbuzz x))
+
+
+; 再帰を使用したFizzBuzz
+(defn fb2 [end]
+  (loop [i 0]
+    (when (< i end) (do (fizzbuzz i) (recur (inc i))))))
+
+(fb2 20)
