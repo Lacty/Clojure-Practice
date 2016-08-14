@@ -5,17 +5,28 @@
 (def arr (take 10 (repeatedly #(rand-int 100))))
 (println arr)
 
-; 配列の中央の要素を求める
-; 要素が一つの場合nilを返す
-(defn pivot [x] (if (= (count x) 1)
-                  nil
-                  (nth x (int (/ (count x) 2)))))
-(pivot arr)
 
-; quick sort 本体
-; filterを使ってpivotより大きい要素をもつ配列と
-; 小さい要素をもつ配列に分離させる
-(defn qsort [x] (if (= (count x) 1)
-                  x
-                  (qsort (filter #(< % (pivot x)) x))))
+(defn qsort [[pivot & coll]]
+  (when pivot
+    (concat (qsort (filter #(< % pivot) coll))
+            [pivot]
+            (qsort (filter #(>= % pivot) coll)))))
+
 (qsort arr)
+
+
+; qsort関数はここから
+; http://eddmann.com/posts/quicksort-in-clojure/
+
+; 関数の仮引数である [[pivot & coll]]
+; pivotには配列の頭の要素が入る
+; collには頭の要素を除いた配列が入る
+
+; (when pivot この部分で
+; pivotに要素がなければ再帰を停止する
+
+; concatは与えられた可変長引数を配列にまとめる
+; qsortに入ってきたpivotを一つずつ配列に加える
+
+; 結果以下の形になる
+; (concat (< の要素) [pivot] (>= の要素))
