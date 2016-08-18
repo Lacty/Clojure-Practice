@@ -3,7 +3,7 @@
 
 (defn setup []
   (smooth)
-  ;; use set-state! to add map
+  ;; set hash-map
   (set-state! :m-pos (atom [0 0])))
 
 (defn draw []
