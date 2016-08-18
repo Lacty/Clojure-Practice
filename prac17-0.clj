@@ -12,3 +12,7 @@
 
 ; Quil
 ; mouse-x mouse-y .etc, these param must be used in let
+
+(defn fun [x] (zero? (mod x 5)))
+(def arr (take 30 (range)))
+(filter fun arr) ;-> (0 5 10 15 20 25)
