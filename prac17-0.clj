@@ -8,3 +8,7 @@
 
 (swap! fifi conj 5)
 (deref fifi) ; -> [2 1 5]
+
+
+; Quil
+; mouse-x mouse-y .etc, these param must be used in let
