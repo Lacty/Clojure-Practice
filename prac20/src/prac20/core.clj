@@ -6,8 +6,8 @@
   (no-stroke)
   (frame-rate 30))
 
-(def pos (atom [0 0]))
-(def vel (atom [1 1]))
+(def pos (atom [100 100]))
+(def vel (atom [(rand 6.0) (rand 6.0)]))
 
 (defn draw []
   (background 255)
@@ -15,9 +15,10 @@
   ; update
   (reset! pos (map + @pos @vel))
   (let [[x y] @pos]
-    (when (or (> x 200) (< x 0))
-      (swap! vel (fn [[x y]]
-                   [(- x) (- y)]))))
+    (cond
+      (or (> x 200) (< x 0)) (swap! vel (fn [[x y]] [(- x) y]))
+      (or (> y 200) (< y 0)) (swap! vel (fn [[x y]] [x (- y)]))))
+
   
   ; draw
   (fill 192)
