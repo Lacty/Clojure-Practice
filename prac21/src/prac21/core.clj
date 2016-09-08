@@ -4,7 +4,8 @@
 (defn setup []
   (smooth)
   (no-stroke)
-  (frame-rate 30))
+  (frame-rate 30)
+  (set-state! :balls (atom [])))
 
 (defn draw []
   (background 255)
