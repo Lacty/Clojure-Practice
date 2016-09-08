@@ -11,3 +11,7 @@
 (do arr)
 (def arr (conj arr ball))
 (do arr)
+
+; another way to use atom
+(def aarr (atom [ball]))
+(swap! aarr conj ball)
