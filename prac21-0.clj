@@ -15,3 +15,7 @@
 ; another way to use atom
 (def aarr (atom [ball]))
 (swap! aarr conj ball)
+
+(defn hage [aaa & bbb]
+  (when aaa
+   (:speed aaa)))
