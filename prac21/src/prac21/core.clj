@@ -20,7 +20,7 @@
                  [(+ low-color-val (rand (- 256 low-color-val)))
                   (+ low-color-val (rand (- 256 low-color-val)))
                   (+ low-color-val (rand (- 256 low-color-val)))]))) ; color
-
+aaaaa
 (defn draw-ball [ball]
   (let [[x y] (:pos ball)
         size (:size ball)
