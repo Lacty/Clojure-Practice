@@ -6,21 +6,30 @@
 (defn setup []
   (smooth)
   (no-stroke)
-  (frame-rate 30)
+  (frame-rate 20)
   (set-state! :balls (atom [])))
 
 (defn create-ball [pos size color]
   (struct Ball pos size color))
 
 (def low-color-val 50)
-(defn increase-ball [state]
-  (swap! (state :balls) conj
+(defn increase-ball [balls]
+  (swap! balls conj
     (create-ball [(rand 200.0) (rand 200.0)] ; pos
                  (rand 40.0) ; size
                  [(+ low-color-val (rand (- 256 low-color-val)))
                   (+ low-color-val (rand (- 256 low-color-val)))
                   (+ low-color-val (rand (- 256 low-color-val)))]))) ; color
-aaaaa
+
+(defn update-balls [balls]
+  (do
+    (when (mouse-pressed?)
+      (increase-ball balls))
+    (when-not (empty? @balls)
+      (reset! balls
+        (vec (map #(struct Ball (vec (map + [1 0] (:pos %))) (:size %) (:color %)) @balls))))))
+
+
 (defn draw-ball [ball]
   (let [[x y] (:pos ball)
         size (:size ball)
@@ -35,10 +44,7 @@ aaaaa
 
 (defn draw []
   (background 255)
-  
-  (when (mouse-pressed?)
-    (increase-ball state))
-  
+  (update-balls (state :balls))
   (draw-balls @(state :balls)))
 
 (defsketch example

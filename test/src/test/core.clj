@@ -10,5 +10,8 @@
 (when-not (empty? @arr)
   (println (map #(struct Player (str (:name %) "a")) @arr)))
 
+(defn aaa[a] (println a))
+;(aaa arr)
+
 (defn -main []
   (println "Hello, World!"))
